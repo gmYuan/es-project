@@ -1,11 +1,11 @@
 class Stack {
-    private items: number[] = []
-    push(element: number) {
-        this.items.push(element);
-    }
-    pop(): number {
-        return this.items.pop();
-    }
+  private items: number[] = [];
+  push(element: number) {
+    this.items.push(element);
+  }
+  pop(): number {
+    return this.items.pop();
+  }
 }
 let stack = new Stack();
 stack.push(1);
@@ -15,15 +15,14 @@ console.log(stack.pop());
 console.log(stack.pop());
 console.log(stack.pop());
 
-
 function one() {
-    function two() {
-        function three() {
-            console.log('three');
-        }
-        three();
+  function two() {
+    function three() {
+      console.log("three");
     }
-    two();
+    three();
+  }
+  two();
 }
 debugger;
 one();

@@ -46,16 +46,15 @@ executionContext.VO.b = 1;
 executionContext.VO.b = 2;
 console.log(executionContext.VO.a); */
 
-
-var m = { a: 1, b: 2 };// xo1
+var m = { a: 1, b: 2 }; // xo1
 //如果是引用数据类型，赋值 的时候赋值 的是引用地址
 var n = m; //n= xo1
-n.a = 10;// {a:10,b:2}
-console.log(m.a);//10
+n.a = 10; // {a:10,b:2}
+console.log(m.a); //10
 
 let executionContext = {
-    VO: { m: { a: 1, b: 2 } }
-}
+  VO: { m: { a: 1, b: 2 } },
+};
 executionContext.VO.n = executionContext.VO.m;
 executionContext.VO.n.a = 10;
 console.log(executionContext.VO.m.a);

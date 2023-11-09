@@ -1,58 +1,60 @@
-// 再es5中没有类的概念的 构造函数
+// 在es5中没有类的概念的 构造函数
 // es6 class
 // 如何实现一个类？
 // 类的继承 三种属性 公有属性(__proto__) 私有属性 静态方法(静态属性)
-function Parent(){
+
+function Parent() {
   // 构造函数中的this 通过new调用的那么this指代的是实例
-  this.name = 'parent';
+  this.name = "parent";
 }
 Parent.prototype.eat = function () {
-  console.log('eat');
-}
+  console.log("eat");
+};
+
 function Child() {
   this.age = 9;
   Parent.call(this);
 }
+
 // 二. 继承公有属性
 // X：Child.prototype = Parent.prototype; 这个是兄弟关系 不是父子关系
-// 1).Child.prototype.__proto__ = Parent.prototype;
-// Object.setPrototypeOf(Child.prototype,Parent.prototype);
-// 2).Child.prototype = Object.create(Parent.prototype); 只继承公有
-function create(parentPrototype,props){
+
+// 1). Child.prototype.__proto__ = Parent.prototype;
+// Object.setPrototypeOf(Child.prototype, Parent.prototype);
+
+// 2). Child.prototype = Object.create(Parent.prototype); 只继承公有
+// create的实现原理
+function create(parentPrototype, props) {
   function Fn() {}
   Fn.prototype = parentPrototype;
   let fn = new Fn();
-  for(let key in props){
+  for (let key in props) {
     Object.defineProperty(fn, key, {
       ...props[key],
-      enumerable:true
+      enumerable: true,
     });
   }
   return fn;
 }
-Child.prototype = create(Parent.prototype,{constructor:{value:Child}});
-let child = new Child();
-console.log(child.constructor);
-// Object.create
 
+Child.prototype = create(Parent.prototype, { constructor: { value: Child } });
+let child = new Child();
+console.log('child.constructor是', child.constructor);
+// Object.create
 // let child = new Child();
 // child.eat();
+
+
 // 一.继承私有属性  Parent.call(this);
 // console.log(child.name);
 
-
 // 2)
 // parent.__proto__.eat(); // 会先去找私有属性找不到再去找公有属性
-// 1) 
+// 1)
 // console.log(Parent.prototype.constructor === Parent)
-
 
 // 继承公有属性和私有属性
 Child.prototype = new Parent(); // 不会使用这种方式
-
-
-
-
 
 // let a = {}
 // // a.name = 1;

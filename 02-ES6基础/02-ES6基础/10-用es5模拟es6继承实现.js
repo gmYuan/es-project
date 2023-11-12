@@ -4,6 +4,7 @@ function _classCallCheck(instance, constructor) {
     throw new Error("Class constructor Child cannot be invoked without new");
   }
 }
+
 // construtor 是构造函数
 // protoPropertys  是原型方法的描述
 // staticPropertys 是静态方法的描述
@@ -17,6 +18,7 @@ function definePropertys(target, arr) {
     });
   }
 }
+
 function _createClass(constructor, protoPropertys, staticPropertys) {
   if (protoPropertys.length > 0) {
     definePropertys(constructor.prototype, protoPropertys);
@@ -25,6 +27,7 @@ function _createClass(constructor, protoPropertys, staticPropertys) {
     definePropertys(constructor, staticPropertys);
   }
 }
+
 let Parent = (function () {
   // 写逻辑
   function P() {
@@ -42,6 +45,7 @@ let Parent = (function () {
         },
       },
     ],
+    // 静态属性描述器
     [
       {
         key: "b",
@@ -53,6 +57,7 @@ let Parent = (function () {
   );
   return P;
 })();
+
 // 子类继承父类
 function _inherits(subClass, superClass) {
   // 继承公有属性
@@ -62,6 +67,7 @@ function _inherits(subClass, superClass) {
   // 继承静态方法
   Object.setPrototypeOf(subClass, superClass);
 }
+
 let Child = (function (Parent) {
   // 先实现继承父类的公有属性和静态方法
   _inherits(C, Parent);

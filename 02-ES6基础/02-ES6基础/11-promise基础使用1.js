@@ -19,13 +19,19 @@
 // 事件环
 // Promise只有一个参数 叫excutor执行器，默认new时就会调用
 
-let p = new Promise((resolve,reject)=>{ 
+let p = new Promise((resolve, reject) => {
   // 默认promise中的executor是同步执行的
-   resolve('买');
+  resolve("买");
 });
+
 // then方法是异步调用的，事件环
-p.then((value)=>{ // value成功的原因
-  console.log(1);
-},(err)=>{ // err失败的原因
-});
+p.then(
+  (value) => {
+    // value成功的原因
+    console.log(1);
+  },
+  (err) => {
+    // err失败的原因
+  }
+);
 console.log(2);

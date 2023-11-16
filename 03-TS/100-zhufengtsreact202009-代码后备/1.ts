@@ -1,1 +1,0 @@
-let c:any = <Array<string>>[];

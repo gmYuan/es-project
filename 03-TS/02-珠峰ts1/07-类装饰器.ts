@@ -1,7 +1,10 @@
 /**
- * 装饰器
+ * 装饰
  */
 export {};
+
+
+
 /* class Person{
     say(){}
 } */
@@ -24,8 +27,8 @@ namespace a {
     eat: Function;
     constructor() {}
   }
-  let p: Person = new Person();
-  //console.log(p.name);
+  // let p: Person = new Person();
+  // console.log('ppp', p.name);
   // p.eat();
 }
 
@@ -43,9 +46,9 @@ namespace b {
     eat: Function;
     constructor() {}
   }
-  let p: Person = new Person();
-  //console.log(p.name);
-  //p.eat();
+  // let p: Person = new Person();
+  // console.log(p.name);
+  // p.eat();
 }
 
 
@@ -66,9 +69,8 @@ namespace c {
     eat: Function;
     constructor() {}
   }
-  let p: Person = new Person();
-  //console.log(p.name);
-  //p.eat();
+  // let p: Person = new Person();
+  // console.log('ccc', p.name);
 }
 
 
@@ -94,15 +96,16 @@ namespace d {
   }
   //如果装饰的是静态属性的话,target是构造函数本身
   function staticPropertyDecorator(target: any, propertyKey: string) {
-    console.log(target, propertyKey);
+    // console.log('静态属性的target和key', target, propertyKey);
   }
+  // 修饰实例方法
   function noEnumerable(
     target: any,
     propertyKey: string,
     descriptor: PropertyDescriptor
   ) {
-    console.log(target);
-    console.log(propertyKey);
+    // console.log('实例方法的target',target);
+    // console.log('实例方法的key',propertyKey);
     descriptor.enumerable = false;
   }
   function toNumber(
@@ -131,9 +134,9 @@ namespace d {
       return args.reduce((accu: number, item: number) => accu + item, 0);
     }
   }
-  let p = new Person();
-  //console.log(p.name);
-  //console.log(p.sum('1', '2', '3'));
+  // let p = new Person();
+  // console.log('----------', p.name);
+  // console.log(p.sum('1', '2', '3'));
 }
 
 
@@ -142,45 +145,46 @@ namespace e {
   //手写一个IOC
   //在IOC容器里大放异彩  Nest.js大量的用到了参数装饰器
   //target 静态成员就是构造函数 非静态成员就是构造函数原型 方法的名称 参数的索引
-  function addAge(target: any, methodName, paramIndex: number) {
-    console.log(target, methodName, paramIndex);
+  function addAge(target: any, methodName: any, paramIndex: number) {
+    // console.log('参数装饰器的target,methodName,index是--', target, methodName, paramIndex);
     target.age = 10;
   }
   class Person {
     age: number;
     login(username: string, @addAge password: string) {
-      console.log(this.age, username, password);
+      // console.log(this.age, username, password);
     }
   }
-  let p = new Person();
-  p.login("1", "2");
+
+  // let p = new Person();
+  // p.login("1", "2");
 }
 
 
 //装饰器的执行顺序
 namespace f {
   function ClassDecorator1() {
-    return function (target) {
+    return function (target: any) {
       console.log("ClassDecorator1");
     };
   }
   function ClassDecorator2() {
-    return function (target) {
+    return function (target: any) {
       console.log("ClassDecorator2");
     };
   }
   function PropertyDecorator(name: string) {
-    return function (target, propertyName) {
+    return function (target: any, propertyName: any) {
       console.log("PropertyDecorator", propertyName, name);
     };
   }
   function MethodDecorator() {
-    return function (target, propertyName) {
+    return function (target: any, propertyName: any) {
       console.log("MethodDecorator", propertyName);
     };
   }
   function ParameterDecorator() {
-    return function (target, methodName, index) {
+    return function (target: any, methodName: any, index: number) {
       console.log("ParameterDecorator", methodName, index);
     };
   }
@@ -198,13 +202,13 @@ namespace f {
 
 /**
  * 执行顺序的规律
- * 1.类装饰器是最后执行的,后写的类装饰器先执行
- * 2.方法和就去参数中的装饰器先执行参数
- * 3. 就去和属性装饰器,谁在前面先执行谁
+ * 1. 类装饰器是最后执行的, 后写的类装饰器先执行
+ * 2. 方法和【方法参数】中的装饰器，先执行【方法参数】装饰器
+ * 3. 方法和属性装饰器, 谁在前面先执行谁
  *
- * 一般人内往外执行 先内后外
+ * 一般都是 从内往外执行 先内后外
  * 类比React组件的componentDidMount 先上后下 先内后外
- * 一定要学会知识的
+ * 
+ * 一定要学会知识的嫁接
  * koa 中间件 redux中间件
- *
  */

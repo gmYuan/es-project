@@ -1,5 +1,4 @@
-export {}
-
+export {};
 
 class Animal {}
 class Dog extends Animal {
@@ -11,12 +10,14 @@ class BlackDog extends Dog {
 class WhiteDog extends Dog {
   public home: string = "北京";
 }
+
 let animal: Animal;
 let dog: Dog;
 let blackDog: BlackDog;
 let whiteDog: WhiteDog;
 type Callback = (dog: Dog) => Dog;
 function exec(callback: Callback): void {}
+
 /**
  * 参数可以传自己和自己的父类
  * 返回值可以传自己和自己的子类
@@ -29,14 +30,17 @@ function exec(callback: Callback): void {}
 type ChildToChild = (blackDog: BlackDog) => BlackDog;
 let childToChild: ChildToChild;
 //exec(childToChild);//n
+
 type ChildToParent = (blackDog: BlackDog) => Animal;
 let childToParent: ChildToParent;
 //exec(childToParent);//n
+
 type ParentToParent = (animal: Animal) => Animal;
 let parentToParent: ParentToParent;
 //exec(parentToParent);//n
+
 type ParentToChild = (animal: Animal) => BlackDog;
 let parentToChild: ParentToChild;
-exec(parentToChild);//y
-//ts中其实参数是双向协变的
+exec(parentToChild); //y
 
+//ts中其实参数是双向协变的

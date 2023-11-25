@@ -10,27 +10,22 @@ interface String {
 }
  */
 //相同名称的interface会进行合并
-export {}
-declare global{
-    interface String {
-       double(): string;
-    }
 
-    interface Window {
-      myName: string;
-    }
+export {};
+declare global {
+  interface String {
+    double(): string;
+  }
+
+  interface Window {
+    myName: string;
+  }
 }
 
-
-String.prototype.double = function(){
-    return this+this;
-}
-let result = new String("hello").double();//hellohello
+String.prototype.double = function () {
+  return this + this;
+};
+let result = new String("hello").double(); //hellohello
 console.log(result);
 
-
 console.log(window.myName);
-
-
-
-

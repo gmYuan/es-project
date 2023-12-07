@@ -1,6 +1,6 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+const path = require('path');
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
@@ -36,7 +36,10 @@ module.exports = {
       },
       {
         test: /.css?$/,
-        use: ["style-loader", "css-loader"],
+        use:[
+          'style-loader',
+          'css-loader'
+        ]
       },
     ],
   },

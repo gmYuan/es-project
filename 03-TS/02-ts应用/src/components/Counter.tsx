@@ -50,7 +50,6 @@ export default EnhancerConnect(Counter);
 
 // Type 'void' is not assignable to type '(dispatch: any, getState: any) => void'
 
-
 /*
 type ReactText = string | number;
 type ReactChild = ReactElement | ReactText;

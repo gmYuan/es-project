@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { Route, Link, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import history from "./history";
+
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

@@ -1,8 +1,15 @@
-import { createStore, applyMiddleware, AnyAction, StoreEnhancer, StoreEnhancerStoreCreator, Store} from 'redux';
-import combinedReducer,{CombinedState}  from './reducers';
+import {
+  createStore,
+  applyMiddleware,
+  AnyAction,
+  StoreEnhancer,
+  StoreEnhancerStoreCreator,
+  Store,
+} from "redux";
+import combinedReducer, { CombinedState } from "./reducers";
 //import {routerMiddleware} from 'connected-react-router';
-import thunk, { ThunkDispatch, ThunkAction} from 'redux-thunk';
-import history from '@/history';
+import thunk, { ThunkDispatch, ThunkAction } from "redux-thunk";
+import history from "@/history";
 /**
 export function applyMiddleware<Ext1, Ext2, S>(
   middleware1: Middleware<Ext1, S, any>,
@@ -15,24 +22,36 @@ export function applyMiddleware<Ext1, Ext2, S>(
  * Ext2
  * S
  */
-export type DispatchType = ThunkDispatch<CombinedState, undefined, AnyAction>
+export type DispatchType = ThunkDispatch<CombinedState, undefined, AnyAction>;
 type Ext = {
-    dispatch: DispatchType
-}
+  dispatch: DispatchType;
+};
 export type GetStateType = () => CombinedState;
-interface StateExt{}
+interface StateExt {}
 //storeEnhancer 是一个createStore方法的增强器
-let storeEnhancer: StoreEnhancer<Ext> = applyMiddleware<DispatchType, CombinedState>(thunk);
-let storeEnhancerStoreCreator: StoreEnhancerStoreCreator<Ext, StateExt>= storeEnhancer(createStore);
-let store: Store<CombinedState, AnyAction> & Ext = storeEnhancerStoreCreator<CombinedState,AnyAction>(combinedReducer);
+let storeEnhancer: StoreEnhancer<Ext> = applyMiddleware<
+  DispatchType,
+  CombinedState
+>(thunk);
+let storeEnhancerStoreCreator: StoreEnhancerStoreCreator<Ext, StateExt> =
+  storeEnhancer(createStore);
+
+
+// 创建store实例
+let store: Store<CombinedState, AnyAction> & Ext = storeEnhancerStoreCreator<
+  CombinedState,
+  AnyAction
+>(combinedReducer);
+
+
+
 let thunkAction: ThunkAction<void, CombinedState, undefined, AnyAction> = (
-    dispatch: DispatchType,
-    getState: GetStateType
-):void => {}
+  dispatch: DispatchType,
+  getState: GetStateType
+): void => {};
 store.dispatch(thunkAction);
 
 //合并 combineReducer 经过了合并?
-
 
 //(createStore)(combinedReducer);
 export default store;

@@ -2,16 +2,21 @@ import React, { ReactNode } from "react";
 import { connect, InferableComponentEnhancerWithProps } from "react-redux";
 import { CombinedState, CounterState } from "@/store/reducers";
 import * as actions from "@/store/actions/counter";
+
 import { RouteComponentProps } from "react-router-dom";
 import { StaticContext } from "react-router";
 import { LocationDescriptorObject } from "history";
 import { TodosLocationState } from "./Todos";
+
 interface Params {
   name: string;
 }
+
 type Props = CounterState &
   typeof actions &
   RouteComponentProps<Params, StaticContext>;
+
+
 class Counter extends React.Component<Props> {
   render() {
     const {

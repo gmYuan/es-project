@@ -10,6 +10,8 @@ import combinedReducer, { CombinedState } from "./reducers";
 //import {routerMiddleware} from 'connected-react-router';
 import thunk, { ThunkDispatch, ThunkAction } from "redux-thunk";
 import history from "@/history";
+
+
 /**
 export function applyMiddleware<Ext1, Ext2, S>(
   middleware1: Middleware<Ext1, S, any>,
@@ -36,14 +38,11 @@ let storeEnhancer: StoreEnhancer<Ext> = applyMiddleware<
 let storeEnhancerStoreCreator: StoreEnhancerStoreCreator<Ext, StateExt> =
   storeEnhancer(createStore);
 
-
 // 创建store实例
 let store: Store<CombinedState, AnyAction> & Ext = storeEnhancerStoreCreator<
   CombinedState,
   AnyAction
 >(combinedReducer);
-
-
 
 let thunkAction: ThunkAction<void, CombinedState, undefined, AnyAction> = (
   dispatch: DispatchType,

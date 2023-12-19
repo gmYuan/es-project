@@ -16,7 +16,6 @@ type Props = CounterState &
   typeof actions &
   RouteComponentProps<Params, StaticContext>;
 
-
 class Counter extends React.Component<Props> {
   render() {
     const {
